@@ -32,15 +32,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>{this.state.data ? this.state.data.ParentCity.EnglishName : ''}</h1>
-        {this.state.meteos ? this.state.meteos.DailyForecasts.map(meteo => {
-          return <Meteo 
-                    phrase={meteo.Day.IconPhrase}
-                    min={meteo.Temperature.Minimum.Value}
-                    max={meteo.Temperature.Maximum.Value}
-                    icon={`https://vortex.accuweather.com/adc2010/images/slate/icons/${meteo.Day.Icon}.svg`}
-                  />
-        }) : ''}
+        <h1 className='my-3 display-2 city'>{this.state.data ? this.state.data.ParentCity.EnglishName : ''}</h1>
+        <div className='container'>
+          <div className='row justify-content-center'>
+            {this.state.meteos ? this.state.meteos.DailyForecasts.map(meteo => {
+              return <Meteo
+                phrase={meteo.Day.IconPhrase}
+                min={meteo.Temperature.Minimum.Value}
+                max={meteo.Temperature.Maximum.Value}
+                icon={`https://vortex.accuweather.com/adc2010/images/slate/icons/${meteo.Day.Icon}.svg`}
+                windDirection={meteo.Day.Wind.Direction.English}
+                windSpeed={meteo.Day.Wind.Speed.Value}
+              />
+            }) : ''}
+          </div>
+        </div>
       </div>
     );
   }

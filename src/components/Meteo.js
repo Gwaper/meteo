@@ -7,12 +7,14 @@ class Meteo extends Component {
 
   render() {
     return (
-      <div className='meteoDisplay'>
-        <h3>{this.props.phrase}</h3>
-        <img src={this.props.icon} width='100'/>
-        <p><strong>{this.props.max} °C</strong> / {this.props.min} °C</p>
-        <hr />
-      </div>
+        <div className='card m-3' style={{ width: '18rem', padding:'30px 30px 0px 30px' }}>
+          <img src={this.props.icon} />
+          <div className='card-body'>
+            <h5 className='card-title'>{this.props.phrase}</h5>
+            <p><strong>{this.props.max} °C</strong> / {this.props.min} °C</p>
+            <p className='card-text'>Vent: {this.props.windSpeed} km/h direction {this.props.windDirection}</p>
+          </div>
+        </div>
     )
   }
 }

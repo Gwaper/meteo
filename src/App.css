@@ -31,3 +31,12 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: #232323;
+}
+
+.city {
+  color: white;
+}
+
