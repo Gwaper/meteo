@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1 className='my-3 display-2 city'>{this.state.data ? this.state.data.ParentCity.EnglishName : ''}</h1>
+        <h1 className='my-3 display-2 city'>{this.state.meteos ? this.state.data.EnglishName : ''}</h1>
         <div className='container'>
           <div className='row justify-content-center'>
             {this.state.meteos ? this.state.meteos.DailyForecasts.map(meteo => {
