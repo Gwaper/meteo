@@ -37,6 +37,7 @@ class App extends Component {
           <div className='row justify-content-center'>
             {this.state.meteos ? this.state.meteos.DailyForecasts.map(meteo => {
               return <Meteo
+                key={meteo.date}
                 phrase={meteo.Day.IconPhrase}
                 min={meteo.Temperature.Minimum.Value}
                 max={meteo.Temperature.Maximum.Value}
