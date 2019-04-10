@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Meteo from './components/Meteo'
+import APIKey from './API.js';
+import { Header, Icon, Card } from 'semantic-ui-react';
 import './App.css';
-
-const APIKey = 'RoHmJrMrbbo7p1SvsLfA2reOGUOQfi5F';
 
 class App extends Component {
   constructor() {
@@ -28,29 +28,33 @@ class App extends Component {
         })
     });
   }
-
+  
   render() {
     return (
-      <div className="App">
-        <h1 className='my-3 display-2 city'>{this.state.meteos ? this.state.data.EnglishName : ''}</h1>
-        <div className='container'>
-          <div className='row justify-content-center'>
-            {this.state.meteos ? this.state.meteos.DailyForecasts.map(meteo => {
-              return <Meteo
-                key={meteo.date}
-                phrase={meteo.Day.IconPhrase}
-                min={meteo.Temperature.Minimum.Value}
-                max={meteo.Temperature.Maximum.Value}
-                icon={`https://vortex.accuweather.com/adc2010/images/slate/icons/${meteo.Day.Icon}.svg`}
-                windDirection={meteo.Day.Wind.Direction.English}
-                windSpeed={meteo.Day.Wind.Speed.Value}
-              />
-            }) : ''}
-          </div>
-        </div>
+      <div className='App'>
+        <Header as='h2' className='title'>
+          <Icon name='adjust' />
+          <Header.Content>
+            {this.state.meteos ? this.state.data.EnglishName : ''}
+            <Header.Subheader>{this.state.meteos ? this.state.data.Country.EnglishName : ''}</Header.Subheader>
+          </Header.Content>
+        </Header>
+        <Card.Group className='cards'>
+          {this.state.meteos ? this.state.meteos.DailyForecasts.map((meteo, index) => {
+            return <Meteo
+              key={index}
+              phrase={meteo.Day.IconPhrase}
+              date={meteo.Date}
+              min={Math.round(meteo.Temperature.Minimum.Value)}
+              max={Math.round(meteo.Temperature.Maximum.Value)}
+              icon={`https://vortex.accuweather.com/adc2010/images/slate/icons/${meteo.Day.Icon}.svg`}
+            />
+          }) : ''}
+        </Card.Group>
       </div>
     );
   }
 }
 
 export default App;
+

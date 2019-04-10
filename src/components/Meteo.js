@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
+import { Card, Image } from 'semantic-ui-react';
+import moment from 'moment';
+import 'moment/locale/fr'
+import './Meteo.css';
+
+moment.locale('fr');
 
 class Meteo extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
-        <div className='card m-3' style={{ width: '18rem', padding:'30px 30px 0px 30px' }}>
-          <img className='iconWeather' src={this.props.icon} alt={this.props.phrase} />
-          <div className='card-body'>
-            <h5 className='card-title'>{this.props.phrase}</h5>
-            <p><strong>{this.props.max} °C</strong> / {this.props.min} °C</p>
-            <p className='card-text'>Vent: {this.props.windSpeed} km/h direction {this.props.windDirection}</p>
-          </div>
-        </div>
+      <Card className='Meteo'>
+        <Card.Content>
+          <Image floated='right' size='tiny' src={this.props.icon} alt={this.props.phrase} />
+          <Card.Header>{this.props.phrase}</Card.Header>
+          <Card.Meta>{moment(this.props.date).format('dddd')}</Card.Meta>
+          <Card.Description>
+            {this.props.min}° | {this.props.max}°
+          </Card.Description>
+        </Card.Content>
+      </Card>
     )
   }
 }
 
-export default Meteo
+export default Meteo;
