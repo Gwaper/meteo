@@ -24,3 +24,5 @@ class Meteo extends Component {
 }
 
 export default Meteo;
+
+moment()

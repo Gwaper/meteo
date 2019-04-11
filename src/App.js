@@ -18,11 +18,11 @@ class App extends Component {
   componentDidMount = () => {
     navigator.geolocation.getCurrentPosition(pos => {
       this.setState({ lat: parseFloat(pos.coords.latitude.toFixed(3)), long: parseFloat(pos.coords.longitude.toFixed(3)) });
-      fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${APIKey}&q=${this.state.lat}%2C%20${this.state.long}`)
+      fetch(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${APIKey}&q=${this.state.lat}%2C%20${this.state.long}`)
         .then(res => res.json())
         .then(data => {
           this.setState({ data: data });
-          fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.state.data.Key}?apikey=${APIKey}&language=fr-FR&metric=true&details=true`)
+          fetch(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.state.data.Key}?apikey=${APIKey}&language=fr-FR&metric=true&details=true`)
             .then(res => res.json())
             .then(data => this.setState({ meteos: data }))
         })

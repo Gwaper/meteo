@@ -1,5 +1,6 @@
 {
   "name": "meteo",
+  "homepage": "http://julienduhem.fr/apps/meteo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
